@@ -3,9 +3,12 @@ import 'package:aeroclock/models/hive/app_settings_hive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:url_strategy/url_strategy.dart';
 import 'modules/clock_page/clock_page_view.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  setPathUrlStrategy();
   await Hive.initFlutter();
   Hive.registerAdapter<AppSettingsHive>(AppSettingsHiveAdapter());
   appSettingsHiveBox = await Hive.openBox("appSettingsHiveBox");
